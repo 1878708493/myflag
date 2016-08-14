@@ -1,0 +1,148 @@
+package com.example.sdu.myflag.util;
+
+/**
+ * 网络请求工具类
+ */
+
+import android.os.Handler;
+import java.io.IOException;
+import java.util.List;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+/**
+ * Created by Administrator on 2016/7/11.
+ */
+public class NetUtil {
+
+    private static NetUtil mInstance;
+    private OkHttpClient mOkHttpClient;
+    private Handler mDelivery;
+    private static final String TAG = "OkHttpClientManager";
+
+    private NetUtil() {
+        mOkHttpClient = new OkHttpClient();
+    }
+
+    public static NetUtil getInstance() {
+        if (mInstance == null) {
+            synchronized (NetUtil.class) {
+                if (mInstance == null) {
+                    mInstance = new NetUtil();
+                }
+            }
+        }
+        return mInstance;
+    }
+
+    /**
+     * 利用Okhttp的同步GET方法，
+     * 用于获取json等大小较小的数据
+     * 不能再主线程中使用
+     *
+     * @param url
+     * @return string
+     */
+
+    public String OkHttpGet(String url) {
+        String result = null;
+
+        //创建一个Request
+        final Request request = new Request.Builder()
+                .url(url)
+                .build();
+        try {
+            Response response = mOkHttpClient.newCall(request).execute();
+            result = response.body().string();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
+
+    public void post(String url, List<Param> params, final CallBackForResult callBackForResult) throws IOException {
+        int size = params.size();
+        FormBody.Builder mBuilder = new FormBody.Builder();
+        RequestBody body;
+        for (int i = 0; i < size; i++) {
+            mBuilder.add(params.get(i).key, params.get(i).value);
+        }
+        body = mBuilder.build();
+        Request request = new Request.Builder().url(url).post(body).build();
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callBackForResult.onFailure(e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                callBackForResult.onSuccess(response);
+            }
+        });
+    }
+
+    public void post(String url, List<Param> params, String key, String value, final CallBackForResult callBackForResult) throws IOException {
+        int size = params.size();
+        FormBody.Builder mBuilder = new FormBody.Builder();
+        RequestBody body;
+        for (int i = 0; i < size; i++) {
+            mBuilder.add(params.get(i).key, params.get(i).value);
+        }
+        body = mBuilder.build();
+        Request request = new Request.Builder().url(url).addHeader(key, value).post(body).build();
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callBackForResult.onFailure(e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                callBackForResult.onSuccess(response);
+            }
+        });
+    }
+
+    /**
+     * 对外公布的方法
+     */
+    public static void getResultWithHeader(String url, List<Param> params, String key, String value, CallBackForResult callBackForResult) throws IOException {
+        getInstance().post(url, params, key, value, callBackForResult);
+    }
+
+    public static void getResult(String url, List<Param> params, CallBackForResult callBackForResult) throws IOException {
+        getInstance().post(url, params, callBackForResult);
+    }
+
+    public static String getResultGet(String url) {
+        return getInstance().OkHttpGet(url);
+    }
+
+    public static class Param {
+        public Param() {
+        }
+
+        public Param(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        String key;
+        String value;
+    }
+
+    public interface CallBackForResult {
+        void onFailure(IOException e);
+
+        void onSuccess(Response response);
+    }
+}
