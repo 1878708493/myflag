@@ -1,5 +1,6 @@
 package com.example.sdu.myflag.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         afterCreate(savedInstanceState);
+    }
+
+    public void startNewActivity(Class<?> cl){
+        startActivity(new Intent(this, cl));
     }
 
     public abstract int getLayoutId();
