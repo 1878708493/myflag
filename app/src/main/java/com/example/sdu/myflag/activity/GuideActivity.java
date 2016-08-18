@@ -33,7 +33,7 @@ public class GuideActivity extends BaseActivity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                startNewActivity(MainActivity.class);
+                startNewActivity(LoginActivity.class);
                 GuideActivity.this.finish();
             }
         };
