@@ -49,6 +49,7 @@
                         android:src="@drawable/login_userid_icon" />
 
                     <EditText
+                        android:id="@+id/loginAccountEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="16dp"
@@ -75,6 +76,7 @@
                         android:src="@drawable/login_password_icon" />
 
                     <EditText
+                        android:id="@+id/loginPasswordEditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="16dp"
@@ -86,6 +88,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/loginLoginButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="56dp"
@@ -107,6 +110,7 @@
                     android:paddingBottom="16dp">
 
                     <Button
+                        android:id="@+id/loginForgetButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -117,6 +121,7 @@
                         android:textSize="16sp" />
 
                     <Button
+                        android:id="@+id/loginRegisterButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
