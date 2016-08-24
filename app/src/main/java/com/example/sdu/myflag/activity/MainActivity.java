@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.sdu.myflag.R;
 import com.example.sdu.myflag.adapter.SampleViewPagerAdapter;
 import com.example.sdu.myflag.base.BaseActivity;
+import com.example.sdu.myflag.fragment.CommunityFragment;
 import com.example.sdu.myflag.fragment.MainFragment;
 import com.example.sdu.myflag.widget.CustomViewPager;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity {
     private void init(){
         fragmentList = new ArrayList<>();
         fragmentList.add(new MainFragment());
+        fragmentList.add(new CommunityFragment());
         sampleViewPagerAdapter = new SampleViewPagerAdapter(this.getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(sampleViewPagerAdapter);
         viewPager.setOffscreenPageLimit(3);
@@ -94,7 +96,7 @@ public class MainActivity extends BaseActivity {
 
     public void onCommunityTabClick(View view) {
         setCommunityTabSelected();
-        //viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(1);
     }
 
     public void onMySelfTabClick(View view) {

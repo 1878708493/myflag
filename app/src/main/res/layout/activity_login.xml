@@ -3,105 +3,131 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/login_bg"
-    android:gravity="center"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="112dp"
-        android:src="@drawable/login_logo" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/edittext_blue_bord_bg"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_margin="16dp"
-            android:src="@drawable/login_userid_icon" />
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
-            android:background="@null"
-            android:hint="手机/ID号"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text_hint_gray"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/edittext_blue_bord_bg"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_margin="16dp"
-            android:src="@drawable/login_password_icon" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
-            android:background="@null"
-            android:hint="密码(6-16位英文和数字)"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text_hint_gray"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginTop="16dp"
-        android:text="登陆"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        android:background="@drawable/login_button_bg"
-        android:onClick="login"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="忘记密码"
-            android:textColor="@color/login_button_default_blue"
+            android:background="@color/login_bg"
             android:gravity="center"
-            android:background="@color/transparent"
-            android:textSize="16sp"/>
+            android:orientation="vertical">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="注册"
-            android:textColor="@color/login_button_default_blue"
-            android:gravity="center"
-            android:background="@color/transparent"
-            android:textSize="16sp"
-            android:onClick="goToRegister"/>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:gravity="center_horizontal|bottom"
+                android:orientation="vertical"
+                android:padding="40dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:src="@drawable/login_logo" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginRight="56dp"
+                    android:background="@drawable/edittext_blue_bord_bg"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/login_userid_icon" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="16dp"
+                        android:background="@null"
+                        android:hint="手机/ID号"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_hint_gray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edittext_blue_bord_bg"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/login_password_icon" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="16dp"
+                        android:background="@null"
+                        android:hint="密码(6-16位英文和数字)"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_hint_gray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/login_button_bg"
+                    android:gravity="center"
+                    android:onClick="login"
+                    android:text="登陆"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginTop="16dp"
+                    android:paddingBottom="16dp">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:gravity="center"
+                        android:text="忘记密码"
+                        android:textColor="@color/login_button_default_blue"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:gravity="center"
+                        android:onClick="goToRegister"
+                        android:text="注册"
+                        android:textColor="@color/login_button_default_blue"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

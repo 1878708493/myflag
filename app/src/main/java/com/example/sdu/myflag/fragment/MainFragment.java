@@ -2,14 +2,25 @@ package com.example.sdu.myflag.fragment;
 
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import com.example.sdu.myflag.R;
+import com.example.sdu.myflag.adapter.FlagListAdapter;
 import com.example.sdu.myflag.base.BaseFragment;
+import com.example.sdu.myflag.bean.FlagBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/8/17.
  */
 public class MainFragment extends BaseFragment {
+
+    ListView listView;
+    List<FlagBean> mList;
+    FlagListAdapter listAdapter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_main;
@@ -17,11 +28,17 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
-
+        listView.setAdapter(listAdapter);
     }
 
     @Override
     protected void init() {
-
+        listView = (ListView) mRootView.findViewById(R.id.fragment_main_flag_lv);
+        mList = new ArrayList<>();
+        mList.add(new FlagBean("qwer", "减肥", "2016年8月3日", "2016年8月30日", "王二", "晚餐"));
+        mList.add(new FlagBean("qwer", "减肥", "2016年8月3日", "2016年8月30日", "王二", "晚餐"));
+        mList.add(new FlagBean("qwer", "减肥", "2016年8月3日", "2016年8月30日", "王二", "晚餐"));
+        mList.add(new FlagBean("qwer", "减肥", "2016年8月3日", "2016年8月30日", "王二", "晚餐"));
+        listAdapter = new FlagListAdapter(this.getContext(), mList);
     }
 }
