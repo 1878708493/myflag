@@ -2,15 +2,20 @@ package com.example.sdu.myflag.fragment;
 
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.sdu.myflag.R;
 import com.example.sdu.myflag.adapter.FlagListAdapter;
 import com.example.sdu.myflag.base.BaseFragment;
 import com.example.sdu.myflag.bean.FlagBean;
+import com.example.sdu.myflag.util.NetUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2016/8/17.

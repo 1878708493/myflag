@@ -145,4 +145,5 @@ public class NetUtil {
 
         void onSuccess(Response response);
     }
+
 }

@@ -22,6 +22,8 @@
             android:launchMode="singleInstance"/>
 
         <activity android:name=".activity.RegisterActivity"/>
+
+        <activity android:name=".activity.CreateFlagActivity"/>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import com.example.sdu.myflag.adapter.SampleViewPagerAdapter;
 import com.example.sdu.myflag.base.BaseActivity;
 import com.example.sdu.myflag.fragment.CommunityFragment;
 import com.example.sdu.myflag.fragment.MainFragment;
+import com.example.sdu.myflag.fragment.MyFragment;
 import com.example.sdu.myflag.widget.CustomViewPager;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,11 +50,26 @@ public class MainActivity extends BaseActivity {
         fragmentList = new ArrayList<>();
         fragmentList.add(new MainFragment());
         fragmentList.add(new CommunityFragment());
+        fragmentList.add(new MyFragment());
         sampleViewPagerAdapter = new SampleViewPagerAdapter(this.getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(sampleViewPagerAdapter);
         viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(0);
-        setMainTabSelected();
+        setSelected(viewPager.getCurrentItem());
+    }
+
+    private void setSelected(int cur){
+        switch (cur){
+            case 0:
+                setMainTabSelected();
+                break;
+            case 1:
+                setCommunityTabSelected();
+                break;
+            case 2:
+                setMySelfTabSelected();
+                break;
+        }
     }
 
     private void setMainTabSelected(){
@@ -101,6 +117,10 @@ public class MainActivity extends BaseActivity {
 
     public void onMySelfTabClick(View view) {
         setMySelfTabSelected();
-        //viewPager.setCurrentItem(2);
+        viewPager.setCurrentItem(2);
+    }
+
+    public void createFlag(View view){
+        startNewActivity(CreateFlagActivity.class);
     }
 }
