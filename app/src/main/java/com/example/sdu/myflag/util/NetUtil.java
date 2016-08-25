@@ -23,7 +23,9 @@ public class NetUtil {
     private static NetUtil mInstance;
     private OkHttpClient mOkHttpClient;
     private Handler mDelivery;
-    private static final String TAG = "OkHttpClientManager";
+    public static final String TAG = "OkHttpClientManager";
+    public static final String loginUrl = "http://119.29.236.181/myflag/user/Login";
+    public static final String registerUrl = "http://119.29.236.181/myflag/user/Register";
 
     private NetUtil() {
         mOkHttpClient = new OkHttpClient();

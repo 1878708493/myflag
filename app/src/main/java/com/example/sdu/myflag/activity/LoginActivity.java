@@ -1,13 +1,18 @@
 package com.example.sdu.myflag.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import android.view.View.OnClickListener;
 
 import com.example.sdu.myflag.R;
 import com.example.sdu.myflag.base.BaseActivity;
+import com.example.sdu.myflag.base.BaseApplication;
+import com.example.sdu.myflag.util.BaseTools;
 import com.example.sdu.myflag.util.NetUtil;
 import com.example.sdu.myflag.util.NetUtil.*;
 
@@ -22,146 +27,118 @@ import okhttp3.Response;
 /**
  * Created by Administrator on 2016/8/17.
  */
-public class LoginActivity extends BaseActivity
-{
-    private EditText accountEditText,passwordEditText;
-    private Button loginButton,registerButton,forgetButton;
-    private String account,password;
+public class LoginActivity extends BaseActivity {
+    private EditText accountEditText, passwordEditText;
+    private Button forgetButton;
+    private String account, password;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;
     }
 
     @Override
-    public void afterCreate(Bundle savedInstanceState)
-    {
+    public void afterCreate(Bundle savedInstanceState) {
         //获取各组件id
         accountEditText = (EditText) findViewById(R.id.loginAccountEditText);
         passwordEditText = (EditText) findViewById(R.id.loginPasswordEditText);
-        loginButton = (Button)findViewById(R.id.loginLoginButton);
-        registerButton = (Button)findViewById(R.id.loginRegisterButton);
-        forgetButton = (Button)findViewById(R.id.loginForgetButton);
+        forgetButton = (Button) findViewById(R.id.loginForgetButton);
         setButtonListener();
     }
 
-    public void goToRegister(View v){
+    public void goToRegister(View v) {
         startNewActivity(RegisterActivity.class);
     }
 
-    public void login(View v){
-        startNewActivity(MainActivity.class);
+    public void login(View v) {
+        if (getText()) {
+            List<Param> params = new LinkedList<Param>();
+            params.add(new Param("phone", account));
+            params.add(new Param("password", password));
+
+            LoginResult loginResult = new LoginResult();
+            try {
+                NetUtil.getResult(NetUtil.loginUrl, params, loginResult);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-
     //为各个按钮设置监听器
-    private void setButtonListener()
-    {
-        loginButton.setOnClickListener(new OnClickListener()
-        {
+    private void setButtonListener() {
+        forgetButton.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(getText())
-                {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run()
-                        {
-                            List<Param> params = new LinkedList<Param>();
-                            params.add(new Param("id",account));
-                            params.add(new Param("password",password));
-                            String url = "http://119.29.236.181/myflag/user/Login";
-                            LoginResult loginResult = new LoginResult();
-                            try {
-                                NetUtil.getResult(url,params,loginResult);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-                }
+            public void onClick(View v) {
 
             }
         });
-
-        registerButton.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this,RegisterActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        forgetButton.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-
-            }
-        });
-
-
     }
 
     //获取各EditText中的值，并进行合法性校验,合法返回true
     //不合法返回false，并用Toast进行提醒
-    private boolean getText()
-    {
-        boolean legal = true;
-        String str="";
+    private boolean getText() {
         account = accountEditText.getText().toString();
         password = passwordEditText.getText().toString();
-        if(account.isEmpty())
-        {
-            str="账户不能为空！";
-            legal = false;
-        }
-        if(password.isEmpty())
-        {
-            str="密码不能为空！";
-            legal = false;
-        }
-
-        if(!legal)
-        {
-            Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+        if (!BaseTools.isNetworkAvailable(LoginActivity.this)) {
+            Toast.makeText(this, "当前网络不可用！", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (account.isEmpty()) {
+            Toast.makeText(this, "手机号不能为空！", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (password.isEmpty()) {
+            Toast.makeText(this, "密码不能为空！", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         return true;
     }
 
-    private class LoginResult implements CallBackForResult
-    {
+    private class LoginResult implements CallBackForResult {
 
         @Override
-        public void onFailure(IOException e)
-        {
-            Toast.makeText(LoginActivity.this,"登录失败",Toast.LENGTH_LONG).show();
+        public void onFailure(final IOException e) {
+            LoginActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
         }
 
         @Override
-        public void onSuccess(Response response)
-        {
-            if(response.isSuccessful())
-            {
+        public void onSuccess(Response response) {
+            if (response.isSuccessful()) {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
+                    String user = jsonObject.getString("user");
+                    if (user.equals("")) {
+                        LoginActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+                        JSONObject userJson = new JSONObject(user);
+                        SharedPreferences preferences = BaseApplication.getInstance().getSharedPreferences("User", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("uid", userJson.getInt("uid") + "").apply();
+                        editor.putString("phone", userJson.getString("phone")).apply();
+                        editor.putString("nickname", userJson.getString("nickname")).apply();
+                        editor.putString("information", userJson.getString("information")).apply();
+                        editor.putString("email", userJson.getString("email")).apply();
+                        editor.putString("password", password).apply();
 
-
-                    Intent intent = new Intent();
-                    intent.setClass(LoginActivity.this,MainActivity.class);
-                    Bundle bundle = new Bundle();
-
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    finish();
-
+                        LoginActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                        startNewActivity(MainActivity.class);
+                        LoginActivity.this.finish();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

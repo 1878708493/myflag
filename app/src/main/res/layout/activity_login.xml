@@ -54,7 +54,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="16dp"
                         android:background="@null"
-                        android:hint="手机/ID号"
+                        android:hint="手机号"
                         android:textColor="@color/black"
                         android:textColorHint="@color/text_hint_gray"
                         android:textSize="16sp" />
