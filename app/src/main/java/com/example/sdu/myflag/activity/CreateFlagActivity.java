@@ -84,7 +84,7 @@ public class CreateFlagActivity extends BaseActivity
 
                     CreateFlagResult createFlagResult = new CreateFlagResult();
                     try {
-                        NetUtil.getResult(NetUtil.loginUrl, params, createFlagResult);
+                        NetUtil.getResult(NetUtil.createFlagUrl, params, createFlagResult);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
