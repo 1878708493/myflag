@@ -28,6 +28,8 @@ public class NetUtil {
     public static final String registerUrl = "http://119.29.236.181/myflag/user/Register";
     public static final String createFlagUrl = "http://119.29.236.181/myflag/flag/CreateFlag";
     public static final String getMyFlagUrl = "http://119.29.236.181/myflag/flag/MyFlag";
+    public static final String findUserUrl = "http://119.29.236.181/myflag/user/FindUser";
+    public static final String addFriendUrl = "http://119.29.236.181/myflag/friend/AddFriend";
 
 
     private NetUtil() {
