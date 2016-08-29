@@ -39,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="bottom|center_horizontal"
             android:paddingBottom="20dp">
 
             <ImageView
@@ -47,20 +46,27 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:scaleType="fitCenter"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/user_name"
                 android:src="@drawable/head_icon_default" />
-
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/user_icon"
                 android:layout_toRightOf="@+id/user_icon"
-                android:src="@drawable/male_icon" />
+                android:src="@drawable/male_icon"
+                android:layout_marginLeft="-20dp"
+                android:layout_marginTop="-20dp"/>
 
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="用户名"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
         </RelativeLayout>
