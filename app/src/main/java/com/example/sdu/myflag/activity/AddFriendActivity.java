@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sdu.myflag.base.BaseActivity;
 import com.example.sdu.myflag.R;
+import com.example.sdu.myflag.base.BaseActivity;
 import com.example.sdu.myflag.base.BaseApplication;
 import com.example.sdu.myflag.util.NetUtil;
 
@@ -39,7 +39,6 @@ public class AddFriendActivity extends BaseActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         user = savedInstanceState.getString("user");
-        messageButton = (Button) findViewById(R.id.addFriendMessageButton);
         sendButton = (Button) findViewById(R.id.addFriendSendButton);
         nameTextView = (TextView) findViewById(R.id.addFriendNameTextView);
         informationTextView = (TextView) findViewById(R.id.addFriendInformationTextView);
