@@ -25,8 +25,9 @@
             android:launchMode="singleInstance" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.CreateFlagActivity" />
-        <activity android:name=".activity.SearchFriendActivity"></activity>
-        <activity android:name=".activity.AddFriendActivity"></activity>
+        <activity android:name=".activity.SearchFriendActivity" />
+        <activity android:name=".activity.AddFriendActivity" />
+        <activity android:name=".activity.AddFriendMessageActivity"></activity>
     </application>
 
 </manifest>

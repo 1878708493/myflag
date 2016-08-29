@@ -25,7 +25,7 @@ import java.util.List;
 import okhttp3.Response;
 
 public class AddFriendActivity extends BaseActivity {
-    private String user,friendId,friendName,friendInformation;
+    private String user,friendId,friendName,friendInformation,message="";
     private Button messageButton,sendButton;
     private EditText remarkEditText;
     private TextView nameTextView,informationTextView;
@@ -74,13 +74,14 @@ public class AddFriendActivity extends BaseActivity {
 
     private void setListener()
     {
-        //此处未完成
-        messageButton.setOnClickListener(new View.OnClickListener() {
+        messageButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
                 Intent intent = new Intent();
-
+                intent.setClass(AddFriendActivity.this,AddFriendMessageActivity.class);
+                startActivityForResult(intent,1550);
             }
         });
 
@@ -89,7 +90,6 @@ public class AddFriendActivity extends BaseActivity {
             public void onClick(View v)
             {
                 String remark = remarkEditText.getText().toString();
-                String message = "";//验证信息此处未完成
                 AddFriendResult addFriendResult = new AddFriendResult();
                 List<NetUtil.Param> params = new ArrayList<>();
 
@@ -120,6 +120,17 @@ public class AddFriendActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        super.onActivityResult(requestCode,resultCode,data);
+
+        if(resultCode==RESULT_OK)
+        {
+            message = data.getStringExtra("message");
+        }
     }
 
     private class AddFriendResult implements NetUtil.CallBackForResult
