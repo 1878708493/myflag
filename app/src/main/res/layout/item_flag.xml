@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/activity_bg_gray"/>
+        android:background="@color/activity_bg_gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -25,30 +25,30 @@
 
             <ImageView
                 android:id="@+id/head_icon"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/login_userid_icon" />
-            
+
             <ImageView
                 android:id="@+id/sex_icon"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:src="@drawable/male_icon"
+                android:layout_alignRight="@+id/head_icon"
                 android:layout_below="@id/head_icon"
                 android:layout_marginTop="-16dp"
-                android:layout_alignRight="@+id/head_icon"/>
+                android:src="@drawable/male_icon" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:paddingRight="8dp">
+            android:paddingRight="8dp"
+            android:paddingTop="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,7 +89,6 @@
                     android:id="@+id/time_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="2016年12月14日-2016年12月30日"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -112,7 +111,6 @@
                     android:id="@+id/watch_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="王二 李三 赵四"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -135,7 +133,6 @@
                     android:id="@+id/reward_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="一本书"
                     android:textColor="@color/black"
                     android:textSize="14sp" />

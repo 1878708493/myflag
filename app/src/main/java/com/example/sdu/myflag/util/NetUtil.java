@@ -22,12 +22,12 @@ public class NetUtil {
 
     private static NetUtil mInstance;
     private OkHttpClient mOkHttpClient;
-    private Handler mDelivery;
     public static final String TAG = "OkHttpClientManager";
     public static final String loginUrl = "http://119.29.236.181/myflag/user/Login";
     public static final String registerUrl = "http://119.29.236.181/myflag/user/Register";
     public static final String createFlagUrl = "http://119.29.236.181/myflag/flag/CreateFlag";
     public static final String getMyFlagUrl = "http://119.29.236.181/myflag/flag/MyFlag";
+    public static final String searchFriendUrl = "http://119.29.236.181/myflag/user/FindUser";
 
 
     private NetUtil() {

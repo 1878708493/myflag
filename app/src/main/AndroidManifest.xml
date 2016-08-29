@@ -27,6 +27,8 @@
         <activity android:name=".activity.RegisterActivity"/>
 
         <activity android:name=".activity.CreateFlagActivity"/>
+
+        <activity android:name=".activity.SearchFriendActivity"/>
     </application>
 
 </manifest>
