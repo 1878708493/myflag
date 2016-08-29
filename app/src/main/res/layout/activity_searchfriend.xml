@@ -31,7 +31,6 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:background="@color/activity_bg_gray">
 
         <SearchView
@@ -54,15 +53,16 @@
         <ListView
             android:id="@+id/friend_lv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <TextView
+            android:id="@+id/no_user_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="16sp"
             android:gravity="center"
             android:text="抱歉，您搜索的用户不存在！"
-            android:visibility="gone"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone" />
     </RelativeLayout>
 </LinearLayout>

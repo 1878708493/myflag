@@ -2,12 +2,18 @@ package com.example.sdu.myflag.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sdu.myflag.base.BaseActivity;
 import com.example.sdu.myflag.R;
+import com.example.sdu.myflag.util.BaseTools;
 import com.example.sdu.myflag.util.NetUtil;
 
 import org.json.JSONException;
@@ -20,47 +26,42 @@ import java.util.List;
 import okhttp3.Response;
 
 
-public class SearchFriendActivity extends BaseActivity
-{
+public class SearchFriendActivity extends BaseActivity implements SearchView.OnQueryTextListener {
     private SearchView sv;
+    private TextView empty_layout;
+    String user;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_searchfriend;
     }
 
     @Override
-    public void afterCreate(Bundle savedInstanceState)
-    {
-        sv=(SearchView)findViewById(R.id.searchView);
-        sv.setSubmitButtonEnabled(true);
-        sv.setQueryHint("搜索手机/ID号");
-        sv.setOnQueryTextListener(new OnQueryTextListener(){
-
-            @Override
-            public boolean onQueryTextSubmit(String query)
-            {
-                searchFriend(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return true;
-            }
-        });
+    public void afterCreate(Bundle savedInstanceState) {
+        init();
+        sv.setOnQueryTextListener(this);
     }
 
-    private void searchFriend(String str)
-    {
+    private void init() {
+        sv = (SearchView) findViewById(R.id.searchView);
+        empty_layout = (TextView) findViewById(R.id.no_user_tv);
+        int tv_id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView tv = (TextView) sv.findViewById(tv_id);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+    }
+
+    private void searchFriend(String str) {
+        if (!BaseTools.isNetworkAvailable(SearchFriendActivity.this)) {
+            Toast.makeText(SearchFriendActivity.this, "当前网络不可用！", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         SearchFriendResult searchFriendResult = new SearchFriendResult();
         List<NetUtil.Param> params = new LinkedList<NetUtil.Param>();
 
-        if(str.length()==11)//手机号查找
-        {
+        if (str.length() == 11) { // 手机号
             params.add(new NetUtil.Param("phone", str));
-        }
-        else//id查找
-        {
+        } else { // id
             params.add(new NetUtil.Param("id", str));
         }
 
@@ -71,12 +72,21 @@ public class SearchFriendActivity extends BaseActivity
         }
     }
 
-    private class SearchFriendResult implements NetUtil.CallBackForResult
-    {
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        searchFriend(query);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
+
+    private class SearchFriendResult implements NetUtil.CallBackForResult {
 
         @Override
-        public void onFailure(final IOException e)
-        {
+        public void onFailure(final IOException e) {
             SearchFriendActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -86,31 +96,33 @@ public class SearchFriendActivity extends BaseActivity
         }
 
         @Override
-        public void onSuccess(Response response)
-        {
-            if(response.isSuccessful())
-            {
+        public void onSuccess(Response response) {
+            if (response.isSuccessful()) {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
-                    String user = null;
                     user = jsonObject.getString("user");
-                    if (user.equals("")) {
+                    JSONObject userObj = jsonObject.getJSONObject("user");
+                    int uid = userObj.getInt("uid");
+                    if (uid == 0) {
                         SearchFriendActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(SearchFriendActivity.this, "查找失败", Toast.LENGTH_LONG).show();
+                                empty_layout.setVisibility(View.VISIBLE);
                             }
                         });
-                    }
-                    else
-                    {
+                    } else {
                         //查找成功，跳转到添加界面
                         //json解析在添加界面进行
-                        Intent intent = new Intent();
-                        intent.setClass(SearchFriendActivity.this,AddFriendActivity.class);
-                        intent.putExtra("user",user);
-                        startActivity(intent);
-                        SearchFriendActivity.this.finish();
+                        SearchFriendActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                empty_layout.setVisibility(View.GONE);
+                                Intent intent = new Intent();
+                                intent.setClass(SearchFriendActivity.this, AddFriendMessageActivity.class);
+                                intent.putExtra("user", user);
+                                startActivity(intent);
+                            }
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -120,5 +132,9 @@ public class SearchFriendActivity extends BaseActivity
             }
 
         }
+    }
+
+    public void searchFriendBack(View view){
+        this.finish();
     }
 }

@@ -31,8 +31,9 @@
         <activity android:name=".activity.CreateFlagActivity" />
 
         <activity android:name=".activity.SearchFriendActivity" />
-        <activity android:name=".activity.AddFriendActivity"/>
-        <activity android:name=".activity.ConfirmFriendActivity"/>
+        <activity android:name=".activity.AddFriendActivity" />
+        <activity android:name=".activity.ConfirmFriendActivity" />
+        <activity android:name=".activity.AddFriendMessageActivity" />
     </application>
 
 </manifest>
