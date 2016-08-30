@@ -94,13 +94,13 @@ public class CreateFlagActivity extends BaseActivity {
 
         if (id == null) {
             Toast.makeText(this, "获取用户ID失败！", Toast.LENGTH_SHORT).show();
-            legal = false;
+            return false;
         } else if (content.isEmpty() || form.isEmpty() || beginTime.isEmpty() || endTime.isEmpty() || invite.isEmpty() || limit.isEmpty() || award.isEmpty()) {
             Toast.makeText(this, "请将信息填写完整！", Toast.LENGTH_SHORT).show();
-            legal = false;
+            return false;
         } else if (!convertTime()) {
             Toast.makeText(this, "时间输入不合法！", Toast.LENGTH_SHORT).show();
-            legal = false;
+            return false;
         } else {
             if (form.contains("团队"))
                 isTeam = "true";
@@ -115,10 +115,7 @@ public class CreateFlagActivity extends BaseActivity {
             invite.replaceAll("@", "#");
         }
 
-        if (legal)
-            return true;
-        else
-            return false;
+        return true;
     }
 
     private boolean convertTime() {

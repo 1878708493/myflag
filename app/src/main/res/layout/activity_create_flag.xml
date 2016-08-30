@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_bg_gray"
@@ -63,8 +64,8 @@
                     android:id="@+id/newFlagContentEditText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.2"
                     android:layout_marginRight="16dp"
+                    android:layout_weight="2.2"
                     android:background="@null"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="16sp" />
@@ -92,15 +93,49 @@
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
-                <EditText
-                    android:id="@+id/newFlagFormEditText"
+                <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2.2"
-                    android:layout_marginRight="16dp"
-                    android:background="@null"
-                    android:textColor="@color/text_dark_gray"
-                    android:textSize="16sp" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.2">
+
+                    <carbon.widget.RadioGroup
+                        android:id="@+id/radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <carbon.widget.RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/carbon_listItemHeight"
+                            android:gravity="center_vertical"
+                            android:text="个人" />
+
+                        <carbon.widget.Divider
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent" />
+
+                        <carbon.widget.RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/carbon_listItemHeight"
+                            android:gravity="center_vertical"
+                            android:text="团体" />
+
+                    </carbon.widget.RadioGroup>
+
+                    <EditText
+                        android:id="@+id/newFlagFormEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_below="@+id/radio_group"
+                        android:background="@color/white"
+                        android:textColor="@color/text_dark_gray"
+                        android:textSize="16sp"
+                        android:padding="8dp"
+                        android:text="\@"
+                        android:visibility="gone"/>
+                </RelativeLayout>
+
             </LinearLayout>
 
             <View
@@ -129,8 +164,8 @@
                     android:id="@+id/newFlagBeginTimeEditText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.2"
                     android:layout_marginRight="16dp"
+                    android:layout_weight="2.2"
                     android:background="@null"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="16sp" />
@@ -162,8 +197,8 @@
                     android:id="@+id/newFlagEndTimeEditText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.2"
                     android:layout_marginRight="16dp"
+                    android:layout_weight="2.2"
                     android:background="@null"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="16sp" />
@@ -195,8 +230,8 @@
                     android:id="@+id/newFlagInviteEditText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.2"
                     android:layout_marginRight="16dp"
+                    android:layout_weight="2.2"
                     android:background="@null"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="16sp" />
@@ -228,8 +263,8 @@
                     android:id="@+id/newFlagLimitEditText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.2"
                     android:layout_marginRight="16dp"
+                    android:layout_weight="2.2"
                     android:background="@null"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="16sp" />
@@ -261,8 +296,8 @@
                     android:id="@+id/newFlagAwardEditText"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.2"
                     android:layout_marginRight="16dp"
+                    android:layout_weight="2.2"
                     android:background="@null"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="16sp" />
@@ -277,11 +312,11 @@
                 android:id="@+id/newFlagCommitButton"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="40dp"
                 android:background="@drawable/login_button_bg"
                 android:text="提交申请"
-                android:layout_margin="40dp"
                 android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
