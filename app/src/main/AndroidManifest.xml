@@ -19,21 +19,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.MainActivity" />
-
         <activity
             android:name=".activity.LoginActivity"
             android:launchMode="singleInstance" />
-
         <activity android:name=".activity.RegisterActivity" />
-
         <activity android:name=".activity.CreateFlagActivity" />
-
         <activity android:name=".activity.SearchFriendActivity" />
         <activity android:name=".activity.AddFriendActivity" />
         <activity android:name=".activity.ConfirmFriendActivity" />
         <activity android:name=".activity.AddFriendMessageActivity" />
+        <activity android:name=".activity.MyMessageActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="?attr/actionBarSize"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/imageView2"
+        android:id="@+id/myMessageimageView"
         android:src="@drawable/myself_selected"
         android:layout_marginLeft="10dp"/>
 
@@ -16,10 +16,10 @@
         android:text="李四邀请你做TA的FLAG的监督人"
         android:textSize="16dp"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/imageView2"
+        android:layout_toRightOf="@+id/myMessageimageView"
         android:textColor="@color/black"
         android:gravity="center"
-        android:id="@+id/textView" />
+        android:id="@+id/myMessagetextView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,13 +28,13 @@
         android:background="@null"
         android:gravity="center"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/imageButton2"
-        android:id="@+id/textView2" />
+        android:layout_toLeftOf="@+id/myMessageimageView2"
+        android:id="@+id/myMessagetextView2" />
 
-    <ImageButton
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:id="@+id/imageButton2"
+        android:id="@+id/myMessageimageView2"
         android:background="@null"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
