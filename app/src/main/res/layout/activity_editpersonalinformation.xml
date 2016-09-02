@@ -12,22 +12,11 @@
 
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
             android:id="@+id/imageButton"
-            android:layout_marginLeft="15dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/left_arrow"
-            android:background="@null"/>
-
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:text="我"
-            android:textSize="24dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/imageButton"
-            android:id="@+id/button"
+            android:layout_marginLeft="0dp"
+            android:src="?attr/homeAsUpIndicator"
             android:background="@null"/>
 
         <EditText
@@ -43,115 +32,127 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="账号"
-            android:textSize="24dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"/>
-
-        <EditText
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:layout_marginLeft="55dp"
-            android:background="@null"
-            android:hint="123456"/>
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/white">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="3dp"
-        android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="账号"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="昵称"
-            android:textSize="24dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_marginLeft="55dp"
+                    android:background="@null"
+                    android:hint="123456"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:layout_marginLeft="55dp"
-            android:hint="陌年之夏"
-            android:background="@null"/>
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="3dp"
+                android:background="@color/white">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="3dp"
-        android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="昵称"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="性别"
-            android:textSize="24dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_marginLeft="55dp"
+                    android:hint="陌年之夏"
+                    android:background="@null"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:layout_marginLeft="55dp"
-            android:hint="女"
-            android:background="@null"/>
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="3dp"
+                android:background="@color/white">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="性别"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="个性签名"
-            android:textSize="24dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_marginLeft="55dp"
+                    android:hint="女"
+                    android:background="@null"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:layout_marginLeft="15dp"
-            android:hint="介绍下自己吧"
-            android:background="@null"/>
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="个性签名"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_marginLeft="15dp"
+                    android:hint="介绍下自己吧"
+                    android:background="@null"/>
+
+            </LinearLayout>
 
 
+        </LinearLayout>
 
+    </ScrollView>
 
 </LinearLayout>
