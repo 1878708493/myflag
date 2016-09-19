@@ -36,7 +36,8 @@
         <activity android:name=".activity.AddFriendMessageActivity" />
         <activity android:name=".activity.FriendActivity"/>
         <activity android:name=".activity.EditInfoActivity"/>
-        <activity android:name=".activity.MyMessageActivity"></activity>
+        <activity android:name=".activity.MyMessageActivity"/>
+        <activity android:name=".activity.LookInfoActivity"/>
     </application>
 
 </manifest>

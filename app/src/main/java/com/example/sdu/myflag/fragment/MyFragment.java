@@ -1,6 +1,7 @@
 package com.example.sdu.myflag.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.example.sdu.myflag.R;
 import com.example.sdu.myflag.activity.EditInfoActivity;
 import com.example.sdu.myflag.activity.FriendActivity;
+import com.example.sdu.myflag.activity.LookInfoActivity;
+import com.example.sdu.myflag.activity.MyMessageActivity;
 import com.example.sdu.myflag.activity.SearchFriendActivity;
 import com.example.sdu.myflag.base.BaseApplication;
 import com.example.sdu.myflag.base.BaseFragment;
@@ -19,12 +22,13 @@ import com.example.sdu.myflag.base.BaseFragment;
 /**
  * Created by Administrator on 2016/8/24.
  */
-public class MyFragment extends BaseFragment implements View.OnClickListener{
+public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     RelativeLayout messageLayout, addFriendLayout, watchLayout, settingLayout, userInfoLayout;
     TextView userNameTv, userIntroTv;
     ImageView userSexImg;
     LinearLayout friendLayout;
+    private String nickname, information, sex;
 
     @Override
     protected int getLayoutId() {
@@ -34,13 +38,16 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
         SharedPreferences sp = BaseApplication.getInstance().getSharedPreferences("User", Context.MODE_PRIVATE);
-        String nickname = sp.getString("nickname", "");
-        String information = sp.getString("information", "");
+        nickname = sp.getString("nickname", "");
+        information = sp.getString("information", "");
+        sex = sp.getString("sex", "");
         userNameTv.setText(nickname);
         userIntroTv.setText(information);
+
         addFriendLayout.setOnClickListener(this);
         friendLayout.setOnClickListener(this);
         userInfoLayout.setOnClickListener(this);
+        messageLayout.setOnClickListener(this);
     }
 
     @Override
@@ -51,11 +58,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
         userSexImg = (ImageView) mRootView.findViewById(R.id.user_sex_img);
         friendLayout = (LinearLayout) mRootView.findViewById(R.id.friend_layout);
         userInfoLayout = (RelativeLayout) mRootView.findViewById(R.id.user_info_layout);
+        messageLayout = (RelativeLayout) mRootView.findViewById(R.id.message_layout);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.friend_layout:
                 startNewActivity(FriendActivity.class);
                 break;
@@ -65,8 +73,21 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
                 break;
 
             case R.id.user_info_layout:
-                startNewActivity(EditInfoActivity.class);
+                Intent intent = new Intent(MyFragment.this.getActivity(), LookInfoActivity.class);
+                intent.putExtra("nickname", nickname);
+                intent.putExtra("sex", sex);
+                intent.putExtra("info", information);
+                startActivityForResult(intent, 0);
+                break;
+
+            case R.id.message_layout:
+                startNewActivity(MyMessageActivity.class);
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     }
 }

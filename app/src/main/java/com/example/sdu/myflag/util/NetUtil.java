@@ -16,7 +16,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Created by Administrator on 2016/7/11.
+ * 网络请求类
  */
 public class NetUtil {
 
@@ -30,6 +30,8 @@ public class NetUtil {
     public static final String getMyFlagUrl = "http://119.29.236.181/myflag/flag/MyFlag";
     public static final String findUserUrl = "http://119.29.236.181/myflag/user/FindUser";
     public static final String addFriendUrl = "http://119.29.236.181/myflag/friend/AddFriend";
+    public static final String editInfoUrl = "http://119.29.236.181/myflag/user/UpdateInformation";
+    public static final String getFriendMsgUrl = "http://119.29.236.181/myflag/friend/GetFriendRequest";
 
 
     private NetUtil() {

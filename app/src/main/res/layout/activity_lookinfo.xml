@@ -25,9 +25,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="修改个人信息"
+            android:text="查看个人信息"
             android:textColor="@color/black"
             android:textSize="19sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentRight="true"
+            android:text="编辑"
+            android:textColor="@color/text_blue"
+            android:background="@color/transparent"
+            android:onClick="editInfo"
+            android:textSize="18sp"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -47,15 +57,15 @@
             android:textColor="@color/black"
             android:textSize="17sp" />
 
-        <EditText
-            android:id="@+id/nick_name_edt"
+        <TextView
+            android:id="@+id/nick_name_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:background="@null"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="陌年之夏"
+            android:text=""
             android:textColor="@color/text_dark_gray"
             android:textSize="17sp" />
 
@@ -78,30 +88,17 @@
             android:textColor="@color/black"
             android:textSize="17sp" />
 
-        <carbon.widget.RadioGroup
-            android:id="@+id/sex_radio_group"
+        <TextView
+            android:id="@+id/sex_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:background="@null"
+            android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:orientation="horizontal">
-
-            <carbon.widget.RadioButton
-                android:id="@+id/male_rb"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/carbon_listItemHeight"
-                android:gravity="center_vertical"
-                android:text="男"
-                android:checked="true"/>
-
-            <carbon.widget.RadioButton
-                android:id="@+id/female_rb"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/carbon_listItemHeight"
-                android:gravity="center_vertical"
-                android:text="女" />
-
-        </carbon.widget.RadioGroup>
+            android:text=""
+            android:textColor="@color/text_dark_gray"
+            android:textSize="17sp" />
 
     </LinearLayout>
 
@@ -122,29 +119,16 @@
             android:textColor="@color/black"
             android:textSize="17sp" />
 
-        <EditText
-            android:id="@+id/signature_edt"
+        <TextView
+            android:id="@+id/info_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:background="@null"
             android:gravity="center_vertical"
-            android:hint="介绍下自己吧"
             android:paddingLeft="10dp"
             android:textColor="@color/text_dark_gray"
-            android:textColorHint="@color/text_hint_gray"
             android:textSize="17sp" />
 
     </LinearLayout>
-
-    <Button
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:text="提交"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        android:padding="8dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/login_button_bg"
-        android:onClick="editInfoPost"/>
 </LinearLayout>
