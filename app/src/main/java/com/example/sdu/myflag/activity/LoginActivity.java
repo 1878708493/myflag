@@ -52,19 +52,19 @@ public class LoginActivity extends BaseActivity {
 
     public void login(View v) {
         if (getText()) {
-            List<Param> params = new LinkedList<Param>();
-            params.add(new Param("phone", account));
-            params.add(new Param("password", password));
 
-            LoginResult loginResult = new LoginResult();
-            try {
-                NetUtil.getResult(NetUtil.loginUrl, params, loginResult);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
+    List<Param> params = new LinkedList<Param>();
+    params.add(new Param("phone", account));
+    params.add(new Param("password", password));
 
+    LoginResult loginResult = new LoginResult();
+    try {
+        NetUtil.getResult(NetUtil.loginUrl, params, loginResult);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
     //为各个按钮设置监听器
     private void setButtonListener() {
         forgetButton.setOnClickListener(new OnClickListener() {
